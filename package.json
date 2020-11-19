@@ -1,6 +1,6 @@
 {
-  "name": "node-template-ts",
-  "description": "Boiler Plate for node application",
+  "name": "1kobo-api",
+  "description": "This an online investment platform",
   "version": "1.0.0",
   "private": true,
   "author": "Sodiq Alabi",

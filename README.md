@@ -1,5 +1,5 @@
-# Node Tempate Typescript
+# 1Kobi API
 
-## This a boilerplate for bootstrapping a node project in typescript
+## This an online investment platform
 
 ### Author: Sodiq Alabi
