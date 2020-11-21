@@ -2,6 +2,7 @@ import * as express from "express";
 import chalk = require('chalk');
 
 import SampleRoute from './sample.route';
+import UserRoute from './user.route';
 /**
  * Create and return Router.
  *
@@ -15,6 +16,8 @@ export const routes = (app: express.Application) => {
 
     console.log(chalk.yellow.bgBlack.bold("Loading sample routes"));
     SampleRoute.loadRoutes('/samples', router);  
+    console.log(chalk.yellow.bgBlack.bold("Loading users routes"));
+    UserRoute.loadRoutes('/users', router);  
 
     //use router middleware
     app.use(router);
