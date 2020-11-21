@@ -70,7 +70,7 @@ class UserService extends RootService {
         }
     }
     profile = async (req: UserRequestI, res: Response) => {
-        try {
+        try { 
             const select = '+referredBy +infoSource +walletBalance +gender +address +bankInfo +createdAt'
             const user = await UserControl.getById(req.user._id, select);
             if(!user) throw {msg: 'user profile failed'};
@@ -88,6 +88,6 @@ class UserService extends RootService {
         } catch (error) {
             this.sendResponse({status: Status.ERROR, data: error}, res)
         }
-    } 
+    }  
 }
 export default new UserService;
