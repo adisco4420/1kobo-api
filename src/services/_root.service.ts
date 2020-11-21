@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { Document } from 'mongoose';
 
 export enum Status {
     SUCCESS,
@@ -14,7 +15,9 @@ export enum Status {
 }
 
 export class RootService {
-
+    public jsonize(data: Document) {
+        return data.toJSON()
+    }
     public sendResponse(serviceResponse: {status: Status , data: any}, res: Response): any {        
         var response = {
             status: this.getStatusString(serviceResponse.status),
@@ -51,7 +54,7 @@ export class RootService {
                 return 500;
         }
     }
-    public getStatusString(status) {              
+    private getStatusString(status) {              
         return Status[status];
     }
 }
