@@ -8,7 +8,7 @@ class QueryUtil {
         return JSON.stringify(object)
     }
     buildQuery(query): {sort: any, limit: number, skip: number, filter: any} {
-        const { sort, filter, limit, page, filterRange } = query;
+        const { sort, filter, limit, page, filterRange, ...rest } = query;
         let range = filterRange ?  this.strToObj(filterRange) : null;
         const filterx = filter ? this.strToObj(filter) : ({} as any);
         const { key, value } = sort ? this.strToObj(sort) : ({} as any);
@@ -19,7 +19,7 @@ class QueryUtil {
             const {field, ranges:{from, to} } = range;
             range = {[field]: {$gte: from, $lt: to }}
         }
-        const filterResult = range || filterx || {};
+        const filterResult = rest || range || filterx || {};
         return { sort: sortx, limit: limitx, filter: filterResult, skip: skipx}
     }
 }
