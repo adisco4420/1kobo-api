@@ -15,6 +15,7 @@ export interface UserI {
     password?: string;
     walletBalance? : number
 }
+
 export interface UserRequestI extends Request {
     user?: UserI;
 }
