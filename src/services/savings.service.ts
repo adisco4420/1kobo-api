@@ -3,7 +3,8 @@ import { RootService, Status } from './_root.service';
 import SavingsControl from '../controllers/savings.control';
 import { UserRequestI } from '../interfaces/interface';
 import { add , isFuture } from 'date-fns'
-
+import RubiesBankService from './rubiesbank.service';
+import savingsControl from '../../dist/controllers/savings.control';
 
 class SavingsService extends RootService {
     private readonly interestRate = {
@@ -55,10 +56,12 @@ class SavingsService extends RootService {
                 maturityDate: this.getMaturityDate(req.body)
             }
             const save = await SavingsControl.create({...payload});
-            
-
-            this.sendResponse({status: Status.SUCCESS, data: {save}}, res);
+            const virtalactnfo = {user: {...req.user}, ...this.jsonize(save), ...payload, planType: 'savings'}
+            const bankInfo =  await RubiesBankService.createPlanVirtualact(virtalactnfo);
+            this.sendResponse({status: Status.SUCCESS, data: {payload: bankInfo}}, res);
+            await savingsControl.updateById(save._id, {virtualAct: bankInfo})
         } catch ({status, ...error}) {
+            console.log(error);
             const statusx = status ? status : Status.ERROR
             this.sendResponse({status: statusx, data: error}, res)
         }
