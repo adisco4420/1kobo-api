@@ -1,5 +1,4 @@
 import * as joi from 'joi';
-import { join } from 'path';
 
 class UserValidator {
     public create = joi.object({
