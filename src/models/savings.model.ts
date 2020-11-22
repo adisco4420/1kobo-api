@@ -1,3 +1,4 @@
+import { object } from "joi";
 import * as mongoose from "mongoose";
 
 let SavingsSchema = new mongoose.Schema({
@@ -39,6 +40,9 @@ let SavingsSchema = new mongoose.Schema({
         enum: ['pending', 'active', 'completed'],
         required: true,
         default: 'pending'
+    },
+    virtualAct: {
+        type: Object,
     },
     startDate: {
         type: Number,
