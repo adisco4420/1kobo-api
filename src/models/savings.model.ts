@@ -11,16 +11,19 @@ let SavingsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    type: {
+    frequency: {
         type: String,
         enum: ['daily', 'weekly', 'monthly'],
+        required: true
+    },
+    planType: {
+        type: String,
+        enum: ['bronze', 'silver', 'gold'],
         required: true
     },
     amount: {
         type: Number,
         required: true,
-        min: 100,
-        max: 5000000
     },
     payoutAmount: {
         type: Number,
@@ -37,7 +40,7 @@ let SavingsSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'active', 'completed'],
+        enum: ['pending', 'active', 'completed', 'terminated'],
         required: true,
         default: 'pending'
     },
