@@ -12,7 +12,7 @@ class SampleService extends RootService {
     }
     getAll = async (req: Request, res: Response) => {
         try {
-            const samples = await SampleController.getAll(req.query)
+            const samples = await SampleController.getAll(null, req.query)
             this.sendResponse({status: Status.SUCCESS, data: samples}, res);
         } catch (error) {
             this.sendResponse({status: Status.ERROR, data: error}, res)
