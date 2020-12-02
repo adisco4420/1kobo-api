@@ -12,5 +12,6 @@ class VirtualactControl extends RootController {
             console.log(error);
         }
     }
+    
 }  
 export default new VirtualactControl;
