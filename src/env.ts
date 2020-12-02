@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config()
 
-const randomStr = 'e98dec370c9252025ed190bfbfa9d196';
+const randomStr = '0e26631fe2dc119725479203e2d002b1';
 
 const env = {
     MONGODB_URI : process.env.MONGODB_URI,
