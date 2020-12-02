@@ -17,9 +17,9 @@ export class RootController {
     create(payload) {
         return this.model.create({...payload})
     }
-    getAll(query?: {filter?: any, limit?: number, skip?: number, sort?: any}) {
+    getAll(conditions?: object, query?: {filter?: any, limit?: number, skip?: number, sort?: any}, ) {
         const { filter, skip, limit, sort } = QueryUtil.buildQuery(query);
-        return this.model.find({...filter}).skip(skip).limit(limit).sort(sort);
+        return this.model.find({...filter, ...conditions}).skip(skip).limit(limit).sort(sort);
     }
     getOne(query, select = '') {
         const { filter } = QueryUtil.buildQuery(query)
@@ -32,8 +32,7 @@ export class RootController {
         const { filter: condition } = QueryUtil.buildQuery(query)
         return this.model.updateOne({...condition}, {...updateValues}, {new: true})
     }
-    updateMany(query, updateValues) {
-        const { filter: condition } = QueryUtil.buildQuery(query)
+    updateMany(condition, updateValues) {
         return this.model.updateMany({...condition}, {...updateValues})
     }
     updateById(id, condition) {

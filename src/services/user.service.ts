@@ -38,20 +38,20 @@ class UserService extends RootService {
             }
         } catch (error) {
             this.sendResponse({status: Status.ERROR, data: error},res)
-        }
+        } 
     }
     login = async (req: UserRequestI, res: Response) => {
         try {
             const user = await UserControl.getOne({email: req.body.email}, '+password');
-            if(!user) return this.sendResponse({status: Status.UN_AUTHORIZED, data: {msg: 'Invalid Credentials email'}}, res)
+            if(!user) return this.sendResponse({status: Status.UN_AUTHORIZED, data: {msg: 'Invalid Credentials'}}, res)
             const userObj: UserI = this.jsonize(user);
             const validPwd = await EncryptUtil.compare(req.body.password, userObj.password);
-            if(!validPwd) return this.sendResponse({status: Status.UN_AUTHORIZED, data: {msg: 'Invalid Credentials pwd'}}, res)
+            if(!validPwd) return this.sendResponse({status: Status.UN_AUTHORIZED, data: {msg: 'Invalid Credentials'}}, res)
             if(!userObj.isVerified) return this.sendResponse({status: Status.PRECONDITION_FAILED, data: {msg: 'Your account is not verified'}}, res)
             const { password, ...rest } = userObj;
             const payload = TokenUtil.sign(rest, '1d');
             this.sendResponse({status: Status.SUCCESS, data: {payload}}, res)
-        } catch (error) {
+        } catch (error) { 
             this.sendResponse({status: Status.ERROR, data: error}, res)
         }
     }
