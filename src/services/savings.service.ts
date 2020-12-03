@@ -4,7 +4,7 @@ import SavingsControl from '../controllers/savings.control';
 import { SavingsI, UserRequestI } from '../interfaces/interface';
 import { add , isFuture } from 'date-fns'
 import RubiesBankService from './rubiesbank.service';
-import savingsControl from '../../dist/controllers/savings.control';
+import savingsControl from '../controllers/savings.control';
 
 class SavingsService extends RootService {
     private readonly interestRate = {
