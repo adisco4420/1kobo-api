@@ -34,6 +34,9 @@ let SavingsSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    lastPaymentDate: {
+        type: Number,
+    },
     duration: {
         type: Number,
         required: true

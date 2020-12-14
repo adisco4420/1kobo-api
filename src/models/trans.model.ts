@@ -12,7 +12,7 @@ const TraansSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['fundSaving', 'fundInvestment','fundWallet', 'withdraw'],
+        enum: ['fundSaving', 'createSaving', 'fundInvestment','fundWallet', 'withdraw'],
         required: true
     },
     source: {

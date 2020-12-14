@@ -33,12 +33,13 @@ export interface SavingsI {
     maturityDate?: number;
     createdDate?: number;
     virtualAct?: any;
+    lastPaymentDate?: number
 }
 export interface TransI {
     _id?: string;
     userId: string;
     amount: number;
-    type: 'fundSaving' | 'fundInvestment'| 'fundWallet' | 'withdraw';
+    type: 'fundSaving'| 'createSaving' | 'fundInvestment'| 'fundWallet' | 'withdraw';
     desc: string;
     status: 'pending' | 'failed' | 'success' | 'terminated',
     transId?: string;

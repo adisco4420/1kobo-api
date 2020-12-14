@@ -23,13 +23,13 @@ class RubiesBankService extends RootService {
             return config
         })
     }
-    private simulatedVirtualActCreation(): Promise<any> {
+    private simulatedVirtualActCreation(amount): Promise<any> {
         const randomAct = `${Date.now()}`.substring(0, 10);
         const promise = new Promise((resolve) => {
             const data = {
                 virtualaccountname: 'Sodiq Alabi', 
                 virtualaccount: `${randomAct}`, 
-                amount: "1000",
+                amount: `${amount}`,
             }
             resolve({data});
         }) 
@@ -45,14 +45,14 @@ class RubiesBankService extends RootService {
                 const payload = {
                     virtualaccountname: `${body.user.firstName} ${body.user.lastName}`,
                     amountcontrol: 'FIXEDAMOUNT',
-                    daysactive: this.getActiveDays(body),
+                    daysactive: 1000000,
                     minutesactive: 30,
                     amount: `${body.amount}`,
                     callbackurl: this.callbackurl
                 }
                 // const { data  } = await axios.post(`${this.api}/createvirtualaccount`, payload); 
 
-                const { data } = await this.simulatedVirtualActCreation()
+                const { data } = await this.simulatedVirtualActCreation(body.amount)
                 const { _id: planId, planType, amount, userId } = body;
                 const { virtualaccount, virtualaccountname} = data
                 resolve(data)
